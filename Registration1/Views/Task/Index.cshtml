@@ -1,0 +1,38 @@
+@model IEnumerable<Registration1.Models.Task>
+
+<h1>Tasks for @ViewBag.ProjectName</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Task" asp-route-projectId="@ViewData["ProjectId"]">Create New Task</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.DueDate)</th>
+            <th>Actions</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.DueDate</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@task.Id" asp-route-projectId="@ViewData["ProjectId"]">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@task.Id" asp-route-projectId="@ViewData["ProjectId"]">Delete</a>
+                    <a asp-action="Details" asp-route-id="@task.Id" asp-route-projectId="@ViewData["ProjectId"]">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Index" asp-controller="Project" class="btn btn-secondary">Back to Projects</a>
+</p>
